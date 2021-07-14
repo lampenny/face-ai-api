@@ -1,14 +1,14 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
-const cors = require('cors');
-const knex = require('knex');
+const express = import('express');
+const bodyParser = import('body-parser');
+const bcrypt = import('bcrypt');
+const cors = import('cors');
+const knex = import('knex');
 
-const register = require('./controllers/register');
-const signin = require('./controllers/signin');
-const profile = require('./controllers/profile');
-const image = require('./controllers/image');
-const { DatabaseError } = require('pg');
+const register = import('./controllers/register');
+const signin = import('./controllers/signin');
+const profile = import('./controllers/profile');
+const image = import('./controllers/image');
+const { DatabaseError } = import('pg');
 
 const db = knex({
     client: 'pg',
