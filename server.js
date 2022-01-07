@@ -1,21 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
 const cors = require('cors');
-const knex = require('knex');
+const { knex, db, bcrypt } = require("./utils/admin");
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
-
-const db = knex({
-    client: 'pg',
-      connectionString : process.env.DATABASE_URL,
-      ssl: {
-        rejectUnauthorized: false
-      }
-});
 
 const app = express();
 
