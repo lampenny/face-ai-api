@@ -8,9 +8,9 @@ let pool;
 if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
   pool = new Pool({
     host: "127.0.0.1",
-    user: "",
+    user: "Penny",
     password: "",
-    port: 5432,
+    port: process.env.PORT,
     database: "smart-brain",
   });
 } else {
