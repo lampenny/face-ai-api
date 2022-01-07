@@ -24,20 +24,12 @@ const knex = require("knex");
 //   });
 // }
 
-const db = knex({
-  client: 'pg',
-  connection: {
-    host : '127.0.0.1',
-    user : '',
-    password : '',
-    database : 'smart-brain'
-  }
-});
+
 
 //  DEVELOPMENT ONLY - check database
 // db.select('*').from('users').then(data => {
 //   console.log(data);
 // })
 
-module.exports = { db, knex, bcrypt, express };
+module.exports = { knex, bcrypt, express };
 //add pool

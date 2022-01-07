@@ -1,12 +1,22 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { knex, db, bcrypt } = require("./utils/admin");
+const { knex, bcrypt } = require("./utils/admin");
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
+
+ const db = knex({
+    client: 'pg',
+    connection: {
+    host : '127.0.0.1',
+    user : '',
+    password : '',
+    database : 'smart-brain'
+    }
+ });
 
 const app = express();
 
