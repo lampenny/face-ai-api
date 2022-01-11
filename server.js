@@ -17,7 +17,6 @@ app.get("/", (req, res) => {
   res.send(db.users);
 })
 
-res.send(`its working on port ${process.env.PORT}`);
 app.post('/signin', signin.handleSignin (db, bcrypt));
 app.post('/register', register.handleRegister(db, bcrypt));
 app.get('/profile/:id', profile.handleProfileGet(db));
