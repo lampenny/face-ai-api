@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { knex, bcrypt, db } = require("./utils/admin");
+const { knex, bcrypt, db, pool } = require("./utils/admin");
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   res.send("it is working!");
 });
 
-app.post('/signin', signin.handleSignin (db, bcrypt));
+app.post('/signin', signin.handleSignin(db, bcrypt));
 app.post('/register', register.handleRegister(db, bcrypt));
 app.get('/profile/:id', profile.handleProfileGet(db));
 app.put('/image', image.handleImage(db));
