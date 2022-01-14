@@ -10,10 +10,12 @@ const image = require('./controllers/image');
 const cors = require('cors');
 const app = require("express")();
 
+const PORT = process.env.PORT || 3000;
+
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
+app.get("/", (req, res) => { 
   res.send("it is working!");
 });
 
@@ -24,6 +26,6 @@ app.get('/profile/:id', profile.handleProfileGet(db));
 app.put('/image', image.handleImage(db));
 app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) })
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log(`its working on port ${process.env.PORT}`);
+app.listen(PORT, () => {
+    console.log(`its working on port ${PORT}`);
 })
