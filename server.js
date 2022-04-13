@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors');
 const bcrypt = require("bcrypt-nodejs");
+const cors = require("cors");
 const knex = require("knex");
 
 const register = require('./controllers/register');
@@ -18,6 +18,16 @@ const db = knex({
 });
 
 const app = express();
+const PORT = process.env.PORT;
+
+
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -34,6 +44,6 @@ app.get('/profile/:id', profile.handleProfileGet(db));
 app.put('/image', image.handleImage(db));
 app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) })
 
-app.listen(process.env.PORT || 5000, () => {
+app.listen(PORT || 5000, () => {
   console.log(`its working on port ${PORT}`);
 })
