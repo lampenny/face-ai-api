@@ -1,2 +1,2 @@
-# smart-brain-api
-Smart Brain --backend
+# face-ai-api
+Face AI --backend
