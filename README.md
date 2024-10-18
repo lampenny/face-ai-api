@@ -6,6 +6,7 @@ Built with node.js
 ### Getting started
 
 `$ npm install`
+
 `$ npm start`
 
 ### Dependencies
