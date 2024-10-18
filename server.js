@@ -14,7 +14,8 @@ const db = knex({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false,
-  }
+  },
+  database: 'face-ai-api-dev'
 });
 
 const app = express();
@@ -48,6 +49,6 @@ app.put('/image', image.handleImage(db));
 
 app.post('/imageurl', (req, res) => { image.handleApiCall(req, res); });
 
-app.listen(PORT || 3001, () => {
-  console.log(`its working on port ${PORT || 3001}`);
+app.listen(PORT || 4000, () => {
+  console.log(`its working on port ${PORT || 4000}`);
 });
