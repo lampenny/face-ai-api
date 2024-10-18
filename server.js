@@ -11,15 +11,14 @@ const image = require('./controllers/image');
 
 const db = knex({
   client: 'pg',
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: false,
-    }
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  }
 });
 
 const app = express();
 const PORT = process.env.PORT;
-
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -32,18 +31,23 @@ app.use(function (req, res, next) {
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => { 
+app.get("/", (req, res) => {
   res.send("it is working!");
 });
 
-app.get('/', (req, res) => { res.send(db.users) })
+app.get('/', (req, res) => { res.send(db.users); });
+
 app.post('/signin', signin.handleSignin(db, bcrypt));
-app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) });
+
+app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt); });
+
 app.get('/profile/:id', profile.handleProfileGet(db));
+
 //update image increments
 app.put('/image', image.handleImage(db));
-app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) })
 
-app.listen(PORT || 5000, () => {
-  console.log(`its working on port ${PORT}`);
-})
+app.post('/imageurl', (req, res) => { image.handleApiCall(req, res); });
+
+app.listen(PORT || 3001, () => {
+  console.log(`its working on port ${PORT || 3001}`);
+});
